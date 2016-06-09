@@ -75,7 +75,7 @@ var pikePlace = {
 
     for (var j = 0; j < hours.length; j++) {
       var lisEl = document.createElement('li');
-      liEl.textContent = this.stringTotals[i];
+      lisEl.textContent = this.stringTotals[i];
       uEl.appendChild(lisEl);
     }
   }
