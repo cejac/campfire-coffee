@@ -30,8 +30,8 @@ var pikePlace = {
       this.custHourly.push(customers); //hourly cust
       this.cupsHourly.push((customers * this.cups).toFixed(1)); //hourly cups
       this.poundsHourly.push((customers * this.toGo).toFixed(1)); //hourly pounds
-      this.poundsForHourCup.push((cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
-      var total = this.poundsForHourCup[i] + this.poundsForPkg[i]; //amount of beans needed
+      this.poundsForHourCup.push((this.cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
+      var total = this.poundsForHourCup[i] + this.poundsHourly[i]; //amount of beans needed
       this.totalPoundsPerHour.push(total);
     }
   },
@@ -41,7 +41,7 @@ var pikePlace = {
       this.totalCustHourly += this.custHourly[i];
       this.cupsTotal += this.cupsHourly[i];
       this.totalPkgPoundsDay += this.poundsHourly[i];
-      this.totalPoundsDay += this.poundsForHourCup[i] * this.poundsForPkg[i];
+      this.totalPoundsDay += this.poundsForHourCup[i] * this.poundsHourly[i];
     }
   },
 
