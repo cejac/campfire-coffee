@@ -67,6 +67,11 @@ var pikePlace = {
     this.makeDailyString();
 
     var uEl = document.getElementById('pikePlace');
+
+    var title = document.createElement('h1');
+    title.textContent = this.location;
+    uEl.appendChild(title);
+
     for (var i = 0; i < hours.length; i++) {
       var liEl = document.createElement('li');
       liEl.textContent = this.hourlyString[i];
