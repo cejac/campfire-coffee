@@ -33,6 +33,7 @@ var pikePlace = {
       this.custHourly.push(customers); //hourly cust
       this.cupsHourly.push((customers * this.cups).toFixed(1)); //hourly cups
       this.poundsHourly.push(Math.ceil(customers * this.toGo)); //hourly pounds
+      this.employeesNeeded.push(Math.ceil(this.custHourly[i] / 30));
       this.poundsForHourCup.push((this.cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
       var total = parseFloat(this.poundsForHourCup[i]) + parseFloat(this.poundsHourly[i]); //amount of beans needed
       this.totalPoundsPerHour.push(total.toFixed(1));
@@ -48,13 +49,6 @@ var pikePlace = {
     }
   },
 
-  employees: function() {
-    for (var i = 0; i < hours.length; i++) {
-      var hourlyEmployees = (this.custHourly[i] / 30);
-      employeesNeeded.push(hourlyEmployees);
-    }
-  },
-  
   makeHourlyString: function() {
     for (i = 0; i < hours.length; i++) {
       var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + ' cups (' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
@@ -76,7 +70,7 @@ var pikePlace = {
     this.makeHourlyString();
     this.makeDailyString();
 
-    var uEl = document.getElementById('pikePlace');
+    var uEl = document.getElementById('stores');
 
     var title = document.createElement('h1');
     title.textContent = this.location;
