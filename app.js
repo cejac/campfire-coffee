@@ -29,7 +29,7 @@ var pikePlace = {
       var customers = Math.floor(Math.random() * (this.maxCust - this.minCust) + 1) + this.minCust;
       this.custHourly.push(customers); //hourly cust
       this.cupsHourly.push((customers * this.cups).toFixed(1)); //hourly cups
-      this.poundsHourly.push((customers * this.toGo).toFixed(1)); //hourly pounds
+      this.poundsHourly.push(Math.ceil(customers * this.toGo)); //hourly pounds
       this.poundsForHourCup.push((this.cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
       var total = parseFloat(this.poundsForHourCup[i]) + parseFloat(this.poundsHourly[i]); //amount of beans needed
       this.totalPoundsPerHour.push(total.toFixed(1));
@@ -38,10 +38,10 @@ var pikePlace = {
 
   daily: function() {
     for (var i = 0; i < hours.length; i++) {
-      this.totalCustHourly += this.custHourly[i];
-      this.cupsTotal += this.cupsHourly[i];
-      this.totalPkgPoundsDay += this.poundsHourly[i];
-      this.totalPoundsDay += this.poundsForHourCup[i] * this.poundsHourly[i];
+      this.totalCustHourly += parseFloat(this.custHourly[i]);
+      this.cupsTotal += parseFloat(this.cupsHourly[i]);
+      this.totalPkgPoundsDay += parseFloat(this.poundsHourly[i]);
+      this.totalPoundsDay += parseFloat(this.poundsForHourCup[i]) * parseFloat(this.poundsHourly[i]);
     }
   },
 
@@ -54,9 +54,9 @@ var pikePlace = {
 
   makeDailyString: function() {
     var sOne = 'Total customers at ' + this.location + ': ' + this.totalCustHourly;
-    var sTwo = 'Total cups sold at ' + this.location + ': ' + this.cupsTotal;
-    var sThree = 'Total to-go pound packages sold at ' + this.location + ': ' + this.totalPkgPoundsDay;
-    var sFour = 'Total pounds of beans needed at ' + this.location + ': ' + this.totalPoundsDay;
+    var sTwo = 'Total cups sold at ' + this.location + ': ' + Math.ceil(this.cupsTotal);
+    var sThree = 'Total to-go pound packages sold at ' + this.location + ': ' + Math.ceil(this.totalPkgPoundsDay);
+    var sFour = 'Total pounds of beans needed at ' + this.location + ': ' + parseFloat(this.totalPoundsDay).toFixed(1);
     this.stringTotals.push(sOne, sTwo, sThree, sFour);
   },
 
