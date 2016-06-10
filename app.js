@@ -31,8 +31,8 @@ var pikePlace = {
       this.cupsHourly.push((customers * this.cups).toFixed(1)); //hourly cups
       this.poundsHourly.push((customers * this.toGo).toFixed(1)); //hourly pounds
       this.poundsForHourCup.push((this.cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
-      var total = this.poundsForHourCup[i] + this.poundsHourly[i]; //amount of beans needed
-      this.totalPoundsPerHour.push(total);
+      var total = parseFloat(this.poundsForHourCup[i]) + parseFloat(this.poundsHourly[i]); //amount of beans needed
+      this.totalPoundsPerHour.push(total.toFixed(1));
     }
   },
 
@@ -47,7 +47,7 @@ var pikePlace = {
 
   makeHourlyString: function() {
     for (i = 0; i < hours.length; i++) {
-      var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs, [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + 'cups ( ' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
+      var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + ' cups (' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
       this.hourlyString.push(stringOne);
     }
   },
@@ -75,7 +75,7 @@ var pikePlace = {
 
     for (var j = 0; j < hours.length; j++) {
       var lisEl = document.createElement('li');
-      lisEl.textContent = this.stringTotals[i];
+      lisEl.textContent = this.stringTotals[j];
       uEl.appendChild(lisEl);
     }
   }
