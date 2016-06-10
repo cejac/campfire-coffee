@@ -16,6 +16,9 @@ var pikePlace = {
   poundsHourly: [],
   poundsTotal: 0,
 
+  employeesNeeded: [],
+  employeesTotal: 0,
+
   poundsForHourCup: [],
   totalPoundsPerHour: [],
   totalPkgPoundsDay: 0,
@@ -45,6 +48,13 @@ var pikePlace = {
     }
   },
 
+  employees: function() {
+    for (var i = 0; i < hours.length; i++) {
+      var hourlyEmployees = (this.custHourly[i] / 30);
+      employeesNeeded.push(hourlyEmployees);
+    }
+  },
+  
   makeHourlyString: function() {
     for (i = 0; i < hours.length; i++) {
       var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + ' cups (' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
