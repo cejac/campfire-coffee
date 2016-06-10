@@ -16,6 +16,9 @@ var pikePlace = {
   poundsHourly: [],
   poundsTotal: 0,
 
+  employeesNeeded: [],
+  employeesTotal: 0,
+
   poundsForHourCup: [],
   totalPoundsPerHour: [],
   totalPkgPoundsDay: 0,
@@ -29,34 +32,41 @@ var pikePlace = {
       var customers = Math.floor(Math.random() * (this.maxCust - this.minCust) + 1) + this.minCust;
       this.custHourly.push(customers); //hourly cust
       this.cupsHourly.push((customers * this.cups).toFixed(1)); //hourly cups
-      this.poundsHourly.push((customers * this.toGo).toFixed(1)); //hourly pounds
+      this.poundsHourly.push(Math.ceil(customers * this.toGo)); //hourly pounds
       this.poundsForHourCup.push((this.cupsHourly[i] / 16).toFixed(1)); //pounds needed to make cups
-      var total = this.poundsForHourCup[i] + this.poundsHourly[i]; //amount of beans needed
-      this.totalPoundsPerHour.push(total);
+      var total = parseFloat(this.poundsForHourCup[i]) + parseFloat(this.poundsHourly[i]); //amount of beans needed
+      this.totalPoundsPerHour.push(total.toFixed(1));
     }
   },
 
   daily: function() {
     for (var i = 0; i < hours.length; i++) {
-      this.totalCustHourly += this.custHourly[i];
-      this.cupsTotal += this.cupsHourly[i];
-      this.totalPkgPoundsDay += this.poundsHourly[i];
-      this.totalPoundsDay += this.poundsForHourCup[i] * this.poundsHourly[i];
+      this.totalCustHourly += parseFloat(this.custHourly[i]);
+      this.cupsTotal += parseFloat(this.cupsHourly[i]);
+      this.totalPkgPoundsDay += parseFloat(this.poundsHourly[i]);
+      this.totalPoundsDay += parseFloat(this.poundsForHourCup[i]) * parseFloat(this.poundsHourly[i]);
     }
   },
 
+  employees: function() {
+    for (var i = 0; i < hours.length; i++) {
+      var hourlyEmployees = (this.custHourly[i] / 30);
+      employeesNeeded.push(hourlyEmployees);
+    }
+  },
+  
   makeHourlyString: function() {
     for (i = 0; i < hours.length; i++) {
-      var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs, [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + 'cups ( ' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
+      var stringOne = hours[i] + this.totalPoundsPerHour[i] + ' lbs [' + this.custHourly[i] + ' customers, ' + this.cupsHourly[i] + ' cups (' + this.poundsForHourCup[i] + ' lbs), ' + this.poundsHourly[i] + ' lbs to-go]';
       this.hourlyString.push(stringOne);
     }
   },
 
   makeDailyString: function() {
     var sOne = 'Total customers at ' + this.location + ': ' + this.totalCustHourly;
-    var sTwo = 'Total cups sold at ' + this.location + ': ' + this.cupsTotal;
-    var sThree = 'Total to-go pound packages sold at ' + this.location + ': ' + this.totalPkgPoundsDay;
-    var sFour = 'Total pounds of beans needed at ' + this.location + ': ' + this.totalPoundsDay;
+    var sTwo = 'Total cups sold at ' + this.location + ': ' + Math.ceil(this.cupsTotal);
+    var sThree = 'Total to-go pound packages sold at ' + this.location + ': ' + Math.ceil(this.totalPkgPoundsDay);
+    var sFour = 'Total pounds of beans needed at ' + this.location + ': ' + parseFloat(this.totalPoundsDay).toFixed(1);
     this.stringTotals.push(sOne, sTwo, sThree, sFour);
   },
 
@@ -67,15 +77,20 @@ var pikePlace = {
     this.makeDailyString();
 
     var uEl = document.getElementById('pikePlace');
+
+    var title = document.createElement('h1');
+    title.textContent = this.location;
+    uEl.appendChild(title);
+
     for (var i = 0; i < hours.length; i++) {
       var liEl = document.createElement('li');
       liEl.textContent = this.hourlyString[i];
       uEl.appendChild(liEl);
     }
 
-    for (var j = 0; j < hours.length; j++) {
+    for (var j = 0; j < this.stringTotals.length; j++) {
       var lisEl = document.createElement('li');
-      lisEl.textContent = this.stringTotals[i];
+      lisEl.textContent = this.stringTotals[j];
       uEl.appendChild(lisEl);
     }
   }
