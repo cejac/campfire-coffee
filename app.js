@@ -44,7 +44,7 @@ Store.prototype.daily = function() {
     this.totalCustHourly += parseFloat(this.custHourly[i]);
     this.cupsTotal += parseFloat(this.cupsHourly[i]);
     this.totalPkgPoundsDay += parseFloat(this.poundsHourly[i]);
-    this.totalPoundsDay += parseFloat(this.poundsForHourCup[i]) * parseFloat(this.poundsHourly[i]);
+    this.totalPoundsDay += Math.ceil(this.poundsForHourCup[i]) * Math.ceil(this.poundsHourly[i]);
     this.employeesTotal += parseFloat(this.employeesNeeded[i]);
   }
 };
@@ -55,7 +55,7 @@ Store.prototype.render = function() {
 };
 
 var pikePlace = new Store('Pike Place Market', 14, 35, 1.2, 0.34);
-var capitolHill = new Store('Capitol Hill', 12, 28, 3.2, 0,03);
+var capitolHill = new Store('Capitol Hill', 12, 28, 3.2, 0.03);
 var seaLibrary = new Store('Seattle Public Library', 9, 45, 2.6, 0.02);
 var southLake = new Store('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new Store('Sea-Tac Airport', 28, 44, 1.1, 0.41);
@@ -70,6 +70,7 @@ seaTac.render();
 //making tables
 
 var table = document.getElementById('beans');
+
 var stores = document.createElement('tr');
 var empty = document.createElement('th');
 var totals = document.createElement('th');
@@ -90,7 +91,9 @@ table.appendChild(stores);
 for (var i = 0; i < allstores.length; i++) {
   var locations = document.createElement('tr');
   locations.textContent = allstores[i].kiosk;
-  // table.appendChild(locations);
+  var totalPoundsDayTdEl = document.createElement('td');
+  totalPoundsDayTdEl.textContent = allstores[i].totalPoundsDay;
+  locations.appendChild(totalPoundsDayTdEl);
   for (j in hours) {
     // var totalBeans = document.createElement('td');
     var hourBeans = document.createElement('td');
