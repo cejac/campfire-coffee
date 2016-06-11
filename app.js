@@ -85,3 +85,10 @@ for (idx in hours) {
 }
 
 table.appendChild(stores);
+
+
+for (var i = 0; i < allstores.length; i++) {
+  var locations = document.createElement('tr');
+  locations.textContent = allstores[i].kiosk;
+  table.appendChild(locations);
+};
