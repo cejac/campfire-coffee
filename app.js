@@ -66,3 +66,22 @@ capitolHill.render();
 seaLibrary.render();
 southLake.render();
 seaTac.render();
+
+//making tables
+
+var table = document.getElementById('beans');
+var stores = document.createElement('tr');
+var empty = document.createElement('th');
+var totals = document.createElement('th');
+totals.textContent = 'Daily Totals';
+empty.textContent = '';
+stores.appendChild(empty);
+stores.appendChild(totals);
+
+for (idx in hours) {
+  var tdEl = document.createElement('th');
+  tdEl.textContent = hours[idx];
+  stores.appendChild(tdEl);
+}
+
+table.appendChild(stores);
