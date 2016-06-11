@@ -1,5 +1,9 @@
 var hours = ['6:00am ', '7:00am ', '8:00am ', '9:00am ', '10:00am ', '11:00am ', '12:00pm ', '1:00pm ', '2:00pm ', '3:00pm ', '4:00pm ', '5:00pm ', '6:00pm ', '7:00pm ', '8:00pm ', '9:00pm '];
 var allstores = [];
+var dailyBeanTotal = 0;
+var hourlyBeanTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var dailyBarTotal = 0;
+var hourlyBarTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 function Store(kiosk, minCust, maxCust, cups, pounds) {
   this.kiosk = kiosk;
@@ -49,6 +53,13 @@ Store.prototype.daily = function() {
   }
 };
 
+// Store.prototype.totals = function() {
+//     dailyBeanTotal += allstores[l].totalPoundsDay;
+// };
+// for (var l = 0; l < allstores.length; l++) {
+//   allstores[l].totals()
+// }
+
 Store.prototype.render = function() {
   this.hourly();
   this.daily();
@@ -71,6 +82,7 @@ seaTac.render();
 
 var table = document.getElementById('beans');
 
+//Table head
 var stores = document.createElement('tr');
 var empty = document.createElement('th');
 var totals = document.createElement('th');
@@ -87,7 +99,7 @@ for (idx in hours) {
 
 table.appendChild(stores);
 
-
+//table data
 for (var i = 0; i < allstores.length; i++) {
   var locations = document.createElement('tr');
   locations.textContent = allstores[i].kiosk;
@@ -95,12 +107,25 @@ for (var i = 0; i < allstores.length; i++) {
   totalPoundsDayTdEl.textContent = allstores[i].totalPoundsDay;
   locations.appendChild(totalPoundsDayTdEl);
   for (j in hours) {
-    // var totalBeans = document.createElement('td');
     var hourBeans = document.createElement('td');
-    // totalBeans.textContent = allstores[i].totalPoundsDay[j];
     hourBeans.textContent = allstores[i].totalPoundsPerHour[j];
-    // locations.appendChild(totalBeans);
     locations.appendChild(hourBeans);
   }
   table.appendChild(locations);
 };
+
+//total row
+var totalRow = document.createElement('tr');
+totalRow.textContent = 'Total';
+table.appendChild(totalRow);
+for (var l = 0; l < allstores.length; l++) {
+  dailyBeanTotal += allstores[l].totalPoundsDay;
+  var dailyTotalBean = document.createElement('td');
+  dailyTotalBean.textContent = dailyBeanTotal;
+}
+// for (var m = 0; m < hours.length; m++) {
+//   hourlyBeanTotal += Math.ceil(allstores[m].totalPoundsPerHour[m]);
+//   var hourlyTotalBean = document.createElement('td');
+//   hourlyTotalBean.textContent = hourlyBeanTotal;
+// }
+totalRow.appendChild(dailyTotalBean);
