@@ -53,13 +53,6 @@ Store.prototype.daily = function() {
   }
 };
 
-// Store.prototype.totals = function() {
-//     dailyBeanTotal += allstores[l].totalPoundsDay;
-// };
-// for (var l = 0; l < allstores.length; l++) {
-//   allstores[l].totals()
-// }
-
 Store.prototype.render = function() {
   this.hourly();
   this.daily();
@@ -129,8 +122,6 @@ for (var l = 0; l < allstores.length; l++) {
   dailyTotalBean.textContent = dailyBeanTotal;
   for (var m = 0; m < hours.length; m++) {
     hourlyBeanTotal[m] += parseFloat(allstores[l].totalPoundsPerHour[m]);
-    // var hourlyTotalBean = document.createElement('td');
-    // hourlyTotalBean.textContent = hourlyBeanTotal[m].toFixed(1);
   };
 };
 
@@ -140,13 +131,4 @@ for (a in hours) {
   var hourlyTotalBeanEl = document.createElement('td');
   hourlyTotalBeanEl.textContent = hourlyBeanTotal[a];
   totalRow.appendChild(hourlyTotalBeanEl);
-}
-// totalRow.appendChild(hourlyTotalBeanEl);
-
-// var hourlyBean = document.createElement('td');
-// var dailyBean = document.createElement('td');
-// hourlyBean.textContent = hourlyBeanTotal;
-// dailyBean.textContent = dailyBeanTotal;
-//
-// totalRow.appendChild(dailyBean);
-// totalRow.appendChild(hourlyBean);
+};
