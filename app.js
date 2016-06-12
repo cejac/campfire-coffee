@@ -53,13 +53,6 @@ Store.prototype.daily = function() {
   }
 };
 
-// Store.prototype.totals = function() {
-//     dailyBeanTotal += allstores[l].totalPoundsDay;
-// };
-// for (var l = 0; l < allstores.length; l++) {
-//   allstores[l].totals()
-// }
-
 Store.prototype.render = function() {
   this.hourly();
   this.daily();
@@ -116,16 +109,26 @@ for (var i = 0; i < allstores.length; i++) {
 
 //total row
 var totalRow = document.createElement('tr');
-totalRow.textContent = 'Total';
+
+var totalTotalTd = document.createElement('td');
+totalTotalTd.textContent = 'Total';
+totalRow.appendChild(totalTotalTd);
+
 table.appendChild(totalRow);
+
 for (var l = 0; l < allstores.length; l++) {
   dailyBeanTotal += allstores[l].totalPoundsDay;
   var dailyTotalBean = document.createElement('td');
   dailyTotalBean.textContent = dailyBeanTotal;
-}
-// for (var m = 0; m < hours.length; m++) {
-//   hourlyBeanTotal += Math.ceil(allstores[m].totalPoundsPerHour[m]);
-//   var hourlyTotalBean = document.createElement('td');
-//   hourlyTotalBean.textContent = hourlyBeanTotal;
-// }
+  for (var m = 0; m < hours.length; m++) {
+    hourlyBeanTotal[m] += parseFloat(allstores[l].totalPoundsPerHour[m]);
+  };
+};
+
 totalRow.appendChild(dailyTotalBean);
+
+for (a in hours) {
+  var hourlyTotalBeanEl = document.createElement('td');
+  hourlyTotalBeanEl.textContent = hourlyBeanTotal[a];
+  totalRow.appendChild(hourlyTotalBeanEl);
+};
