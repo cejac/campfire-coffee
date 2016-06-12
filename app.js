@@ -1,9 +1,10 @@
 var hours = ['6:00am ', '7:00am ', '8:00am ', '9:00am ', '10:00am ', '11:00am ', '12:00pm ', '1:00pm ', '2:00pm ', '3:00pm ', '4:00pm ', '5:00pm ', '6:00pm ', '7:00pm ', '8:00pm ', '9:00pm '];
 var allstores = [];
 var dailyBeanTotal = 0;
-var hourlyBeanTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var hourlyBeanTotal = [];
 var dailyBarTotal = 0;
 var hourlyBarTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var calcHourly = 0;
 
 function Store(kiosk, minCust, maxCust, cups, pounds) {
   this.kiosk = kiosk;
@@ -53,13 +54,6 @@ Store.prototype.daily = function() {
   }
 };
 
-// Store.prototype.totals = function() {
-//     dailyBeanTotal += allstores[l].totalPoundsDay;
-// };
-// for (var l = 0; l < allstores.length; l++) {
-//   allstores[l].totals()
-// }
-
 Store.prototype.render = function() {
   this.hourly();
   this.daily();
@@ -79,7 +73,6 @@ southLake.render();
 seaTac.render();
 
 //making tables
-
 var table = document.getElementById('beans');
 
 //Table head
@@ -116,16 +109,81 @@ for (var i = 0; i < allstores.length; i++) {
 
 //total row
 var totalRow = document.createElement('tr');
-totalRow.textContent = 'Total';
+
+var totalTotalTd = document.createElement('td');
+totalTotalTd.textContent = 'Total';
+totalRow.appendChild(totalTotalTd);
+
 table.appendChild(totalRow);
+
 for (var l = 0; l < allstores.length; l++) {
   dailyBeanTotal += allstores[l].totalPoundsDay;
   var dailyTotalBean = document.createElement('td');
   dailyTotalBean.textContent = dailyBeanTotal;
-}
-// for (var m = 0; m < hours.length; m++) {
-//   hourlyBeanTotal += Math.ceil(allstores[m].totalPoundsPerHour[m]);
-//   var hourlyTotalBean = document.createElement('td');
-//   hourlyTotalBean.textContent = hourlyBeanTotal;
-// }
+  for (var m = 0; m < hours.length; m++){
+    hourlyBeanTotal += parseFloat(allstores[l].totalPoundsPerHour[m]);
+  }
+};
+
 totalRow.appendChild(dailyTotalBean);
+
+
+
+
+
+//
+// for (var m = 0; m < allstores.length; m++) {
+//   dailyBeanTotal += allstores[m].totalPoundsDay;
+// };
+
+
+
+
+
+
+
+
+
+
+// console.log("allstore", allstores[0].totalPoundsPerHour.length);
+//
+// var allstoreLength = allstores[0].totalPoundsPerHour.length;
+// for (var i = 0; i < 5; i++) {
+//   var sum = 0;
+//   var theStore = allstores[i];
+//   var thePoundsPerHourArray = theStore.totalPoundsPerHour;
+//   for (var k = 0; k < allstoreLength; k++) {
+//
+//
+//     // console.log(thePoundsPerHourArray[k]);
+//     var value = thePoundsPerHourArray[k]
+//     console.log(value);
+//     sum = sum + value;
+//     // console.log(theStore);
+//     // console.log("k", k);
+//     // console.log("i", i);
+//
+//   }
+//   console.log("THE SUME", value)
+//
+//
+//
+// }
+//
+// for (store in allstores) {
+//   for (hour in hours) {
+//     calcHourly += allstores[store].totalPoundsPerHour[hour];
+//   }
+//   // hourlyBeanTotal.push
+// }
+
+// for (n in hours) {
+//   for (var m = 0; m < allstores.length; m++) {
+//     hourlyBeanTotal[n] += parseFloat(allstores[m].totalPoundsPerHour[n]);
+//   };
+// };
+//
+//
+// var hourlyTotalBean = document.createElement('td');
+// hourlyTotalBean.textContent = allstores[m].hourlyBeanTotal[n];
+// totalRow.appendChild(hourlyTotalBean);
