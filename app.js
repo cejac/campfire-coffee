@@ -73,8 +73,12 @@ seaTac.render();
 
 //making tables
 
-var table = document.getElementById('beans');
-
+var table = document.getElementById('bothTables');
+var beHead = document.createElement('h2');
+var beTable = document.createElement('table');
+beHead.textContent = 'Baristas Needed By Location Each Day';
+table.appendChild(beHead);
+table.appendChild(beTable);
 //Table head
 var stores = document.createElement('tr');
 var empty = document.createElement('th');
@@ -90,7 +94,7 @@ for (idx in hours) {
   stores.appendChild(tdEl);
 }
 
-table.appendChild(stores);
+beTable.appendChild(stores);
 
 //table data
 for (var i = 0; i < allstores.length; i++) {
@@ -104,7 +108,7 @@ for (var i = 0; i < allstores.length; i++) {
     hourBeans.textContent = allstores[i].totalPoundsPerHour[j];
     locations.appendChild(hourBeans);
   }
-  table.appendChild(locations);
+  beTable.appendChild(locations);
 };
 
 //total row
@@ -114,14 +118,14 @@ var totalTotalTd = document.createElement('td');
 totalTotalTd.textContent = 'Total';
 totalRow.appendChild(totalTotalTd);
 
-table.appendChild(totalRow);
+beTable.appendChild(totalRow);
 
 for (var l = 0; l < allstores.length; l++) {
   dailyBeanTotal += allstores[l].totalPoundsDay;
   var dailyTotalBean = document.createElement('td');
   dailyTotalBean.textContent = dailyBeanTotal;
   for (var m = 0; m < hours.length; m++) {
-    hourlyBeanTotal[m] += parseFloat(allstores[l].totalPoundsPerHour[m]);
+    hourlyBeanTotal[m] += Math.round(allstores[l].totalPoundsPerHour[m]);
   };
 };
 
@@ -132,3 +136,70 @@ for (a in hours) {
   hourlyTotalBeanEl.textContent = hourlyBeanTotal[a];
   totalRow.appendChild(hourlyTotalBeanEl);
 };
+
+
+
+
+
+
+// //Barista
+//
+// var table = document.getElementById('beans');
+//
+// //Table head
+// var stores = document.createElement('tr');
+// var empty = document.createElement('th');
+// var totals = document.createElement('th');
+// totals.textContent = 'Daily Totals';
+// empty.textContent = '';
+// stores.appendChild(empty);
+// stores.appendChild(totals);
+//
+// for (idx in hours) {
+//   var tdEl = document.createElement('th');
+//   tdEl.textContent = hours[idx];
+//   stores.appendChild(tdEl);
+// }
+//
+// table.appendChild(stores);
+//
+// //table data
+// for (var i = 0; i < allstores.length; i++) {
+//   var locations = document.createElement('tr');
+//   locations.textContent = allstores[i].kiosk;
+//   var totalPoundsDayTdEl = document.createElement('td');
+//   totalPoundsDayTdEl.textContent = allstores[i].totalPoundsDay;
+//   locations.appendChild(totalPoundsDayTdEl);
+//   for (j in hours) {
+//     var hourBeans = document.createElement('td');
+//     hourBeans.textContent = allstores[i].totalPoundsPerHour[j];
+//     locations.appendChild(hourBeans);
+//   }
+//   table.appendChild(locations);
+// };
+//
+// //total row
+// var totalRow = document.createElement('tr');
+//
+// var totalTotalTd = document.createElement('td');
+// totalTotalTd.textContent = 'Total';
+// totalRow.appendChild(totalTotalTd);
+//
+// table.appendChild(totalRow);
+//
+// for (var l = 0; l < allstores.length; l++) {
+//   dailyBeanTotal += allstores[l].totalPoundsDay;
+//   var dailyTotalBean = document.createElement('td');
+//   dailyTotalBean.textContent = dailyBeanTotal;
+//   for (var m = 0; m < hours.length; m++) {
+//     hourlyBeanTotal[m] += Math.round(allstores[l].totalPoundsPerHour[m]);
+//   };
+// };
+//
+// totalRow.appendChild(dailyTotalBean);
+//
+// for (a in hours) {
+//   var hourlyTotalBeanEl = document.createElement('td');
+//   hourlyTotalBeanEl.textContent = hourlyBeanTotal[a];
+//   totalRow.appendChild(hourlyTotalBeanEl);
+// };
