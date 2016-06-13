@@ -72,13 +72,13 @@ southLake.render();
 seaTac.render();
 
 //making tables
-
 var table = document.getElementById('bothTables');
 var beHead = document.createElement('h2');
 var beTable = document.createElement('table');
-beHead.textContent = 'Baristas Needed By Location Each Day';
+beHead.textContent = 'Beans Needed By Location Each Day';
 table.appendChild(beHead);
 table.appendChild(beTable);
+
 //Table head
 var stores = document.createElement('tr');
 var empty = document.createElement('th');
@@ -137,69 +137,66 @@ for (a in hours) {
   totalRow.appendChild(hourlyTotalBeanEl);
 };
 
+//Barista
+var baHead = document.createElement('h2');
+var baTable = document.createElement('table');
+baHead.textContent = 'Baristas Needed By Location Each Day';
+table.appendChild(baHead);
+table.appendChild(baTable);
 
+var baStores = document.createElement('tr');
+var baEmpty = document.createElement('th');
+var baTotals = document.createElement('th');
+baTotals.textContent = 'Daily Totals';
+baEmpty.textContent = '';
+baStores.appendChild(baEmpty);
+baStores.appendChild(baTotals);
 
+for (idx in hours) {
+  var baTdEl = document.createElement('th');
+  baTdEl.textContent = hours[idx];
+  baStores.appendChild(baTdEl);
+}
 
+baTable.appendChild(baStores);
 
+//table data
+for (var n = 0; n < allstores.length; n++) {
+  var baLocations = document.createElement('tr');
+  baLocations.textContent = allstores[n].kiosk;
+  var employeesTotalEl = document.createElement('td');
+  employeesTotalEl.textContent = allstores[n].employeesTotal;
+  baLocations.appendChild(employeesTotalEl);
+  for (j in hours) {
+    var empHour = document.createElement('td');
+    empHour.textContent = allstores[n].employeesNeeded[j];
+    baLocations.appendChild(empHour);
+  }
+  baTable.appendChild(baLocations);
+};
 
-// //Barista
-//
-// var table = document.getElementById('beans');
-//
-// //Table head
-// var stores = document.createElement('tr');
-// var empty = document.createElement('th');
-// var totals = document.createElement('th');
-// totals.textContent = 'Daily Totals';
-// empty.textContent = '';
-// stores.appendChild(empty);
-// stores.appendChild(totals);
-//
-// for (idx in hours) {
-//   var tdEl = document.createElement('th');
-//   tdEl.textContent = hours[idx];
-//   stores.appendChild(tdEl);
-// }
-//
-// table.appendChild(stores);
-//
-// //table data
-// for (var i = 0; i < allstores.length; i++) {
-//   var locations = document.createElement('tr');
-//   locations.textContent = allstores[i].kiosk;
-//   var totalPoundsDayTdEl = document.createElement('td');
-//   totalPoundsDayTdEl.textContent = allstores[i].totalPoundsDay;
-//   locations.appendChild(totalPoundsDayTdEl);
-//   for (j in hours) {
-//     var hourBeans = document.createElement('td');
-//     hourBeans.textContent = allstores[i].totalPoundsPerHour[j];
-//     locations.appendChild(hourBeans);
-//   }
-//   table.appendChild(locations);
-// };
-//
-// //total row
-// var totalRow = document.createElement('tr');
-//
-// var totalTotalTd = document.createElement('td');
-// totalTotalTd.textContent = 'Total';
-// totalRow.appendChild(totalTotalTd);
-//
-// table.appendChild(totalRow);
-//
-// for (var l = 0; l < allstores.length; l++) {
-//   dailyBeanTotal += allstores[l].totalPoundsDay;
-//   var dailyTotalBean = document.createElement('td');
-//   dailyTotalBean.textContent = dailyBeanTotal;
-//   for (var m = 0; m < hours.length; m++) {
-//     hourlyBeanTotal[m] += Math.round(allstores[l].totalPoundsPerHour[m]);
-//   };
-// };
-//
-// totalRow.appendChild(dailyTotalBean);
-//
-// for (a in hours) {
-//   var hourlyTotalBeanEl = document.createElement('td');
-//   hourlyTotalBeanEl.textContent = hourlyBeanTotal[a];
-//   totalRow.appendChild(hourlyTotalBeanEl);
-// };
+//total row
+var baTotalRow = document.createElement('tr');
+
+var baTotalTotalTd = document.createElement('td');
+baTotalTotalTd.textContent = 'Total';
+baTotalRow.appendChild(baTotalTotalTd);
+
+baTable.appendChild(baTotalRow);
+
+for (var o = 0; o < allstores.length; o++) {
+  dailyBarTotal += allstores[o].employeesTotal;
+  var dailyBarEl = document.createElement('td');
+  dailyBarEl.textContent = dailyBarTotal;
+  for (var p = 0; p < hours.length; p++) {
+    hourlyBarTotal[p] += allstores[o].employeesNeeded[p];
+  };
+};
+
+baTotalRow.appendChild(dailyBarEl);
+
+for (b in hours) {
+  var baHourly = document.createElement('td');
+  baHourly.textContent = hourlyBarTotal[b];
+  baTotalRow.appendChild(baHourly);
+};
