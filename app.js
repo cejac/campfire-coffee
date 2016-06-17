@@ -116,6 +116,7 @@ createBeanTable();
 function beanTotal(){
   var beTable = document.getElementById('beanTable');
   var totalRow = document.createElement('tr');
+  totalRow.id = 'totalRow'
 
   var totalTotalTd = document.createElement('td');
   totalTotalTd.textContent = 'Total';
@@ -140,6 +141,8 @@ function beanTotal(){
     totalRow.appendChild(hourlyTotalBeanEl);
   };
 }
+beanTotal();
+
 
 var addStore = document.getElementById('newStore');
 addStore.addEventListener('submit', handleFormSubmit);
@@ -150,15 +153,39 @@ function handleFormSubmit() {
   var storeLocation = event.target.kiosk.value;
   var minCust = parseInt(event.target.min.value);
   var maxCust = parseInt(event.target.max.value);
-  var cups = parseInt(event.target.cups.value);
-  var toGo = parseInt(event.target.toGo.value);
+  var cups = parseFloat(event.target.cups.value);
+  var toGo = parseFloat(event.target.toGo.value);
+
+  // document.getElementById('beanTable').remove();   //removes table, but need to rebuild
 
   var addNewStore = new Store(storeLocation, minCust, maxCust, cups, toGo);
+  var beTable = document.getElementById('beanTable');
+  var removeTr = document.getElementById('totalRow');
+  beTable.removeChild(removeTr);
 
   addNewStore.render();
-  createBeanTable();
-}
-beanTotal();
+
+  var locations = document.createElement('tr');
+  locations.textContent = addNewStore.kiosk;
+  var totalPoundsDayTdEl = document.createElement('td');
+  totalPoundsDayTdEl.textContent = addNewStore.totalPoundsDay;
+  locations.appendChild(totalPoundsDayTdEl);
+  for (j in hours) {
+    var hourBeans = document.createElement('td');
+    hourBeans.textContent = addNewStore.totalPoundsPerHour[j];
+    locations.appendChild(hourBeans);
+  }
+  beTable.appendChild(locations);
+
+  beanTotal();
+
+  event.target.kiosk.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.cups.value = null;
+  event.target.toGo.value = null;
+};
+
 
 
 
