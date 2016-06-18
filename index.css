@@ -1,3 +1,57 @@
+div{
+  padding-top: 75px;
+  float: left;
+}
+
+#family{
+  padding-top: 100px;
+  float: left;
+}
+
+.fRight{
+  float: right;
+  margin: 10px;
+}
+
+nav {
+  background: -webkit-linear-gradient(#F2E394, #F2AE72, #D96459);
+  background: -o-linear-gradient(#F2E394, #F2AE72, #D96459);
+  background: -moz-linear-graident(#F2E394, #F2AE72, #D96459);
+  background: linear-gradient(#F2E394, #F2AE72, #D96459);
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  height: 60px;
+  background-size: 100%;
+  padding-bottom: 50px;
+  border: 1px solid black;
+  margin-top: -12px;
+}
+
+ul{
+  text-align: center;
+  margin-top: -25px;
+  color: #588C7E;
+  font-family: arial;
+  font-size: 16px;
+  position: absolute;
+}
+
+li {
+  list-style-type: none;
+  display: inline;
+  width: 155px;
+  float: left;
+  margin-left: 100px;
+}
+
+li:hover {
+  color: #624837;
+  text-decoration: underline;
+  font-family: papyrus;
+}
+
 table {
   border: 1px solid black;
   border-collapse: collapse;
@@ -22,4 +76,16 @@ tr {
 
 th {
   outline: 1px solid black;
+}
+
+#header {
+  text-align: center;
+  font-size: 80px;
+  color: #8C4646;
+  font-family: didot;
+  margin-top: -30px;
+}
+
+#color {
+  border: 1px solid black;
 }
