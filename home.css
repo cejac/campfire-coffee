@@ -26,43 +26,48 @@ nav {
   padding-bottom: 50px;
   border: 1px solid black;
   margin-top: -12px;
+  white-space: nowrap;
 }
 
-ul {
+ul, ul:focus{
   text-align: center;
   margin-top: -25px;
-  color: #588C7E !important;
+  white-space: nowrap;
   font-family: arial;
   font-size: 16px;
-  position: absolute;
 }
 
 li {
   list-style-type: none;
-  display: inline;
-  width: 155px;
-  float: left;
-  margin-left: 100px;
+  display: inline-block;
+  padding-left: 100px;
+  color: #588C7E;
 }
 
-li:hover{
-  color: #624837 !important;
-  text-decoration: underline;
-  font-family: papyrus;
+a {
+  color: #588C7E;
 }
 
-section {
+  a:link{
+    color: #624837;
+    font-family: arial;
+    text-decoration: none;
+  }
+
+  a:hover {
   color: #8C4646;
-  font-weight: bold;
-  font-size: 15px;
+  text-decoration: none;
+  font-family: didot;
 }
 
 #header {
+  display: inline-block;
   text-align: center;
   font-size: 80px;
   color: #8C4646;
   font-family: didot;
   margin-top: -30px;
+  margin-left: 350px;
 }
 
 #color {
