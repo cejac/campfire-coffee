@@ -1,6 +1,6 @@
 
 div{
-  padding-top: 75px;
+  padding-top: 90px;
   float: left;
 }
 
@@ -52,13 +52,13 @@ a {
   color: #588C7E;
 }
 
-  a:link{
-    color: #624837;
-    font-family: arial;
-    text-decoration: none;
-  }
+a:link{
+  color: #624837;
+  font-family: arial;
+  text-decoration: none;
+}
 
-  a:hover {
+a:hover {
   color: #8C4646;
   text-decoration: none;
   font-family: didot;
