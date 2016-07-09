@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Store Data</title>
+    <title>Campfire Coffee</title>
     <link rel="stylesheet" type="text/css" href='index.css'>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href='home.html'>Home</a></li>
-        <li><a href='index.html'>Store Data</a></li>
-        <li><a href='style.html'>Style Guide</a></li>
-        <li>Contact Us</li>
-      </ul></br>
-      <h1 id="header">Campfire Coffee</h1>
-    </nav>
-    <div id='allForms'>
-      <form id='newStore'>
-        <fieldset>
-          <div>
-            <label for="kiosk">New Store Location</label>
-            <input type="text" name="kiosk" required>
-
-            <label for="min">Minimum Amount of Customers</label>
-            <input type="number" name="min" min="0" required>
-
-            <label for="max">Maximum Amount of Customers</label>
-            <input type="number" name="max" min="0" required>
-          </br>
-            <label for="cups">Cups Sold Per Customer</label>
-            <input type="number" name="cups" step='.1' min="0" required>
-
-            <label for="toGo">To-Go Pounds Sold</label>
-            <input type="number" name="toGo" step='.01' min="0" required>
-
-            <input type="submit" value="Add the item">
-          </div>
-        </fieldset>
-      </form>
-      <section>
-        <h2>Beans Needed By Location Each Day</h2>
-        <table id='beanTable'></table>
-
-        <h2>Baristas Need by Location Each Day</h2>
-        <table id='baristaTable'></table>
+    <div id='wrapper'>
+      <nav>
+        <ul>
+          <li><a href='index.html'>Home</a></li>
+          <li><a href='app.html'>Store Data</a></li>
+          <li><a href='style.html'>Style Guide</a></li>
+          <li>Contact Us</li>
+        </ul></br>
+        <h1 id="header">Campfire Coffee</h1>
+      </nav>
+      <section id='family'><img src='img/family.jpg'></section>
+      <section id="blurb">
+        <div>
+          <p>With five locations open 7 days a week, 6am to 9pm, you'll never had to go without that campfire taste!</br> Offering fresh brewed
+            coffee and beans to take home with you to enjoy at home with friends and family!</p><p>Now brewing at the follwoing locations:</br>Pike Place</br>Capitol Hill</br>
+            Seattle Public Library</br>South Lake Union</br>Sea-Tac Airport</br>And growing!
+          </p>
+        </div>
       </section>
+
+      <section id='campfire'><img src='img/campfire.jpg'></section>
+      <section id="text">
+        <div>
+          <p>Typewriter 8-bit put a bird on it, chambray shabby chic pug chicharrones tofu umami farm-to-table</br> hammock bitters. Hammock schlitz deep v, seitan brunch kogi chillwave. Umami fap echo</br> park tumblr poutine, sriracha tacos. Try-hard shoreditch cronut mlkshk keffiyeh semiotics</br> gluten-free roof party, williamsburg synth tacos.Fanny pack gentrify sartorial +1 schlitz, ethical</br> williamsburg twee portland vinyl. Swag intelligentsia shoreditch cray small batch chillwave,</br> retro plaid single-origin coffee tattooed pitchfork.</br> Banh mi small batch try-hard, gentrify franzen cornhole salvia viral craft beer.</p>
+        </div>
+      </section>
+      <section id='tent'>
+        <img src='img/tent.jpg'>
+      </section>
+      <footer>
+        <p>&copy;Campfire Coffee</p>
+      </footer>
     </div>
-    <script src='app.js'></script>
   </body>
-</html>

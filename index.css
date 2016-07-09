@@ -1,16 +1,15 @@
-div{
-  padding-top: 75px;
-  float: left;
+body {
+  background-color: #588C7E;
 }
 
-#family{
-  padding-top: 100px;
-  float: left;
+#wrapper {
+  margin-left:auto;
+  margin-right:auto;
+  width:1300px;
 }
 
-.fRight{
-  float: right;
-  margin: 10px;
+img {
+  padding-top: 150px;
 }
 
 nav {
@@ -31,6 +30,8 @@ nav {
 }
 
 ul, ul:focus{
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin-top: -25px;
   white-space: nowrap;
@@ -41,7 +42,7 @@ ul, ul:focus{
 li {
   list-style-type: none;
   display: inline-block;
-  padding-left: 100px;
+  padding-left: 200px;
   color: #588C7E;
 }
 
@@ -71,33 +72,53 @@ a {
   margin-left: 350px;
 }
 
-table {
-  border: 1px solid black;
-  border-collapse: collapse;
-  margin-bottom: 100px;
-}
-
-tr:nth-child(odd) {
-  background-color: #F1F1F1;
-}
-
-td {
-  border: 1px solid black;
-  text-align: center;
-  padding: 3px;
-  height: 50px;
-  width: 50px;
-}
-
-tr {
-    outline: 1px solid black;
-  }
-
-th {
-  outline: 1px solid black;
-}
-
-
 #color {
   border: 1px solid black;
+}
+
+#family {
+  padding-top: 100px;
+  float: left;
+  margin-left: 50px;
+  padding: 18px;
+}
+
+#blurb {
+  padding-top: 200px;
+  float: right;
+  margin-right: 100px;
+  text-align: center;
+}
+
+#campfire {
+  float: right;
+  width: 1px;
+  height: 1px;
+  margin-top: 300px;
+  margin-right: -150px;
+}
+
+#text {
+  float: left;
+  margin-top: 10px;
+  margin-right: 200px;
+  text-align: center;
+
+}
+
+#tent{
+margin-left: 200px;
+padding: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background: -webkit-linear-gradient(#D96459, #F2AE72, #F2E394);
+  background: -o-linear-gradient(#D96459, #F2AE72, #F2E394);
+  background: -moz-linear-graident(#D96459, #F2AE72, #F2E394);
+  background: linear-gradient(#D96459, #F2AE72, #F2E394);
 }
