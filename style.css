@@ -1,7 +1,7 @@
 #wrapper{
   margin-left:auto;
   margin-right:auto;
-width:960px;
+  width:960px;
 }
 
 nav {
@@ -22,6 +22,8 @@ nav {
 }
 
 ul, ul:focus{
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin-top: -25px;
   white-space: nowrap;
@@ -142,7 +144,7 @@ a {
   float: right;
   margin-top: 200px;
   text-align: center;
-  margin-right: 200px;
+  margin-right: 50px;
 }
 
 #fonts > p {
@@ -151,23 +153,29 @@ a {
 }
 
 #fonts > p:nth-child(2) {
-  font-family: Didot;
-  font-size: 40px;
-  color: black;
+  /*font-family: Didot;*/
+  font-size: 20px;
+  /*color: #8C4646;*/
 }
 
 #fonts > p:nth-child(3) {
-  font-size: 30px;
-  color: black;
+  /*font-family: arial;*/
+  font-size: 20px;
+  /*color: #588C7E;*/
 }
 
+#fonts > p:nth-child(4) {
+  font-size: 20px;
+  /*color: black;*/
+}
 
 #fonts > p:nth-child(5){
   border-bottom: 1px solid grey;
+  padding: 0 250px;
 }
 
 #logo {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 img {
